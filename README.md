@@ -5,6 +5,8 @@ https://teambldr.site
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.  
 Based on [Building a PWA with Angular 6](https://medium.com/@joseant.ruizsantiago/building-a-pwa-with-angular-6-5735d7308d25)
 
+Install and setup [AngularFire](https://github.com/angular/angularfire2/blob/master/docs/install-and-setup.md)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
