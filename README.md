@@ -1,6 +1,8 @@
 # TeamBldr
+https://team-bldr.firebaseapp.com
+https://teambldr.site
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.  
 Based on [Building a PWA with Angular 6](https://medium.com/@joseant.ruizsantiago/building-a-pwa-with-angular-6-5735d7308d25)
 
 ## Development server
