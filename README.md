@@ -7,6 +7,8 @@ Based on [Building a PWA with Angular 6](https://medium.com/@joseant.ruizsantiag
 
 Install and setup [AngularFire](https://github.com/angular/angularfire2/blob/master/docs/install-and-setup.md)
 
+[Angular Material](https://material.angular.io/components/categories)
+
 ## Notifications
 https://github.com/firebase/quickstart-js/blob/master/messaging/README.md
 https://medium.com/@tariqueejaz/progressive-web-app-push-notifications-making-the-web-app-more-native-in-nature-a167af22e004
