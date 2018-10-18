@@ -6,7 +6,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
-import { MatButtonModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -26,7 +26,8 @@ import { MessagingService } from './shared/messaging.service';
     AngularFireDatabaseModule,
     AngularFireMessagingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    MatButtonModule
+    MatToolbarModule,
+    MatButtonModule,
   ],
   providers: [MessagingService],
   bootstrap: [AppComponent]
