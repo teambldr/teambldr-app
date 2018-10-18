@@ -1,5 +1,13 @@
 <mat-toolbar color="primary">Team Builder</mat-toolbar>
-
+<div *ngIf="afAuth.user | async as user; else showLogin">
+  <h1>Hello {{ user.displayName }}!</h1>
+  <button (click)="logout()">Logout</button>
+</div>
+<div class="btn">
+  <a (click)="login()">
+    <img src="../assets/btn_google_signin_light_normal_web.png" />
+  </a>
+</div>
 {{ message | async | json }}
 <ul>
   <li class="text" *ngFor="let item of items | async">
