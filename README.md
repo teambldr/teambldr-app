@@ -7,6 +7,13 @@ Based on [Building a PWA with Angular 6](https://medium.com/@joseant.ruizsantiag
 
 Install and setup [AngularFire](https://github.com/angular/angularfire2/blob/master/docs/install-and-setup.md)
 
+## Notifications
+https://github.com/firebase/quickstart-js/blob/master/messaging/README.md
+https://medium.com/@tariqueejaz/progressive-web-app-push-notifications-making-the-web-app-more-native-in-nature-a167af22e004
+https://codewithstyle.info/push-notifications-with-fcm/
+https://angularfirebase.com/lessons/push-messages-with-firestore/
+https://medium.com/@a.adendrata/push-notifications-with-angular-6-firebase-cloud-massaging-dbfb5fbc0eeb
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
