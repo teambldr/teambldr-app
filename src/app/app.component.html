@@ -3,8 +3,11 @@
   <h1>Hello {{ user.displayName }}!</h1>
   <button (click)="logout()">Logout</button>
 </div>
+<button (click)="loginFacebook()">
+  Sign In With Facebook
+</button>
 <div class="btn">
-  <a (click)="login()">
+  <a (click)="loginGoogle()">
     <img src="../assets/btn_google_signin_light_normal_web.png" />
   </a>
 </div>

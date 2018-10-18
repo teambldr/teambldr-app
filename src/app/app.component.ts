@@ -27,9 +27,15 @@ export class AppComponent implements OnInit {
     this.messagingService.receiveMessage();
     this.message = this.messagingService.currentMessage;
   }
-  login() {
+
+  loginFacebook() {
+    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
+  }
+
+  loginGoogle() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
+
   logout() {
     this.afAuth.auth.signOut();
   }
