@@ -1,17 +1,24 @@
-<mat-toolbar color="primary">Team Builder</mat-toolbar>
+<mat-toolbar color="primary">
+  <span>Team Builder</span>
+  <span class="spacer"></span>
+  <div *ngIf="afAuth.user | async">
+    <button mat-button (click)="logout()">Sign Out</button>
+  </div>
+</mat-toolbar>
 <div *ngIf="afAuth.user | async as user; else showLogin">
   <h1>Hello {{ user.displayName }}!</h1>
-  <button (click)="logout()">Logout</button>
 </div>
-<button (click)="loginFacebook()">
-  Sign In With Facebook
-</button>
-<div class="btn">
-  <a (click)="loginGoogle()">
-    <img src="../assets/btn_google_signin_light_normal_web.png" />
-  </a>
+<ng-template #showLogin>
+  <button mat-raised-button (click)="loginFacebook()">
+    Sign In With Facebook
+  </button>
+  <button mat-raised-button (click)="loginGoogle()">
+    Sign In With Google
+  </button>
+</ng-template>
+<div>
+  {{ message | async | json }}
 </div>
-{{ message | async | json }}
 <ul>
   <li class="text" *ngFor="let item of items | async">
     {{item.name}}
