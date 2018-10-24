@@ -23,10 +23,12 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MessagingService } from './shared/messaging.service';
+import { RecurringEventsComponent } from './recurring-events/recurring-events.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RecurringEventsComponent
   ],
   imports: [
     BrowserModule,
