@@ -15,7 +15,8 @@ import {
   MatFormFieldModule,
   MatNativeDateModule,
   MatInputModule,
-  MatListModule
+  MatListModule,
+  MatSidenavModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -44,7 +45,8 @@ import { MessagingService } from './shared/messaging.service';
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
-    MatListModule
+    MatListModule,
+    MatSidenavModule
   ],
   providers: [MessagingService],
   bootstrap: [AppComponent]
