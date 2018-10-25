@@ -5,7 +5,7 @@
   <span>Team Builder</span>
 </mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav #sidenav fixedInViewport=true mode="over" fixedTopGap=64>
+  <mat-sidenav #sidenav fixedInViewport=true mode="over" fixedTopGap=64 (click)="sidenav.toggle()">
     <mat-nav-list>
       <mat-list-item>
         <a matLine href="">Dashboard</a>
