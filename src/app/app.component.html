@@ -5,7 +5,7 @@
   <span>Team Builder</span>
 </mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="over">
+  <mat-sidenav #sidenav fixedInViewport=true mode="over" fixedTopGap=64>
     <mat-nav-list>
       <mat-list-item>
         <a matLine href="">Dashboard</a>
@@ -13,12 +13,12 @@
     </mat-nav-list>
     <mat-nav-list>
       <mat-list-item>
-        <a matLine routerLink="/recurring" routerLinkActive="active">Templates</a>
+        <a matLine routerLink="/recurring" routerLinkActive="active">Recurring Events Templates</a>
       </mat-list-item>
     </mat-nav-list>
     <mat-nav-list>
       <mat-list-item>
-        <a matLine href="">Events</a>
+        <a matLine href="">Actual Events</a>
       </mat-list-item>
     </mat-nav-list>
     <mat-nav-list>

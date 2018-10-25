@@ -1,3 +1,5 @@
-<p>
-  recurring-events works!
-</p>
+<ul>
+  <li *ngFor="let recurringEvent of recurringEvents | async">
+    {{ recurringEvent.name }}
+  </li>
+</ul>
