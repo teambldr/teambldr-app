@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-
-export interface RecurringEvent { name: string; }
+import { map } from 'rxjs/operators';
+import { RecurringEvent } from '../model/recurring-event';
 
 @Component({
   selector: 'app-recurring-events',
@@ -16,13 +16,16 @@ export class RecurringEventsComponent implements OnInit {
 
   constructor(private afs: AngularFirestore) {
     this.collection = afs.collection<RecurringEvent>('recurringEvents');
-    this.recurringEvents = this.collection.valueChanges();
+    this.recurringEvents = this.collection.snapshotChanges().pipe(map(actions => {
+      return actions.map(action => {
+        const data = action.payload.doc.data() as RecurringEvent;
+        const id = action.payload.doc.id;
+        return { id, ...data };
+      });
+    }));
   }
 
   ngOnInit() {
   }
 
-  addEvent(event: RecurringEvent) {
-    console.log('add');
-  }
 }

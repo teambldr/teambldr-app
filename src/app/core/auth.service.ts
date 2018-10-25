@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 export class AuthService implements CanActivate {
   auth: any;
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) {     
-    this.auth = afAuth.authState.subscribe( user => {
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
+    this.auth = afAuth.authState.subscribe(user => {
       if (user) {
         this.router.navigate(['home']);
       } else {
