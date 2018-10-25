@@ -1,5 +1,8 @@
-<ul>
-  <li *ngFor="let recurringEvent of recurringEvents | async">
+<mat-list>
+  <mat-list-item *ngFor="let recurringEvent of recurringEvents | async">
     {{ recurringEvent.name }}
-  </li>
-</ul>
+  </mat-list-item>
+</mat-list>
+<button mat-fab (click)="addEvent()">
+  <mat-icon aria-label="Add">add</mat-icon>
+</button>

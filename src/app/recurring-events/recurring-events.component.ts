@@ -22,7 +22,7 @@ export class RecurringEventsComponent implements OnInit {
   ngOnInit() {
   }
 
-  addItem(event: RecurringEvent) {
-    this.collection.add(event);
+  addEvent(event: RecurringEvent) {
+    console.log('add');
   }
 }
