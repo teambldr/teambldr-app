@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-import { MessagingService } from './shared/messaging.service';
 import { AuthService } from './core/auth.service';
+import { MessagingService } from './core/messaging.service';
 
 @Component({
   selector: 'app-root',
