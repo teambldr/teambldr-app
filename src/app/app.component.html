@@ -13,7 +13,7 @@
     </mat-nav-list>
     <mat-nav-list>
       <mat-list-item>
-        <a matLine href="">Templates</a>
+        <a matLine routerLink="/recurring" routerLinkActive="active">Templates</a>
       </mat-list-item>
     </mat-nav-list>
     <mat-nav-list>
@@ -28,65 +28,8 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    Main content
 
-    <div *ngIf="afAuth.user | async as user; else showLogin">
-      <h1>Hello {{ user.displayName }}!</h1>
-      <mat-card>
-        <mat-card-header>
-          <div mat-card-avatar>
-            <mat-icon>event</mat-icon>
-          </div>
-          <mat-card-title>Volleyball</mat-card-title>
-          <mat-card-subtitle>My Event</mat-card-subtitle>
-        </mat-card-header>
-        <mat-form-field class="full-width">
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field class="full-width">
-          <input matInput placeholder="Time" value="00:00">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-          <input matInput placeholder="Message" value="Are you in?">
-        </mat-form-field>
-        <mat-selection-list>
-          <mat-list-option checkboxPosition="before">
-            <mat-icon matListIcon>done</mat-icon>
-            Alex
-          </mat-list-option>
-          <mat-list-option checkboxPosition="before">
-            Nick
-          </mat-list-option>
-          <mat-list-option checkboxPosition="before">
-            <mat-icon matListIcon>clear</mat-icon>
-            John
-          </mat-list-option>
+    <router-outlet></router-outlet>
 
-        </mat-selection-list>
-
-        <mat-card-actions>
-          <button mat-button>SEND INVITATIONS</button>
-        </mat-card-actions>
-      </mat-card>
-
-    </div>
-    <ng-template #showLogin>
-      <button mat-raised-button (click)="loginFacebook()">
-        Sign In With Facebook
-      </button>
-      <button mat-raised-button (click)="loginGoogle()">
-        Sign In With Google
-      </button>
-    </ng-template>
-    <div>
-      {{ message | async | json }}
-    </div>
-    <ul>
-      <li class="text" *ngFor="let item of items | async">
-        {{item.name}}
-      </li>
-    </ul>
   </mat-sidenav-content>
 </mat-sidenav-container>

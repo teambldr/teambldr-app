@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 import { MessagingService } from './shared/messaging.service';
+import { AuthService } from './core/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +16,7 @@ export class AppComponent implements OnInit {
   items: Observable<any[]>;
   message: any;
 
-  constructor(public afAuth: AngularFireAuth, db: AngularFirestore, private messagingService: MessagingService) {
+  constructor(db: AngularFirestore, private messagingService: MessagingService, public authService: AuthService) {
     this.items = db.collection('items').valueChanges();
   }
 
@@ -28,15 +27,7 @@ export class AppComponent implements OnInit {
     this.message = this.messagingService.currentMessage;
   }
 
-  loginFacebook() {
-    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
-  }
-
-  loginGoogle() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
-  }
-
   logout() {
-    this.afAuth.auth.signOut();
+    this.authService.logout();
   }
 }

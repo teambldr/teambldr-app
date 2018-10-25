@@ -1,0 +1,43 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>event</mat-icon>
+    </div>
+    <mat-card-title>Volleyball</mat-card-title>
+    <mat-card-subtitle>My Event</mat-card-subtitle>
+  </mat-card-header>
+  <mat-form-field class="full-width">
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Time" value="00:00">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Message" value="Are you in?">
+  </mat-form-field>
+  <mat-selection-list>
+    <mat-list-option checkboxPosition="before">
+      <mat-icon matListIcon>done</mat-icon>
+      Alex
+    </mat-list-option>
+    <mat-list-option checkboxPosition="before">
+      Nick
+    </mat-list-option>
+    <mat-list-option checkboxPosition="before">
+      <mat-icon matListIcon>clear</mat-icon>
+      John
+    </mat-list-option>
+
+  </mat-selection-list>
+
+  <mat-card-actions>
+    <button mat-button>SEND INVITATIONS</button>
+  </mat-card-actions>
+</mat-card>
+<ul>
+  <li class="text" *ngFor="let item of items | async">
+    {{item.name}}
+  </li>
+</ul>
