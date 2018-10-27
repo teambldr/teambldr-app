@@ -15,7 +15,8 @@
     <input matInput placeholder="Time" value="00:00">
   </mat-form-field>
   <mat-form-field class="full-width">
-    <input matInput type="text" name="message" placeholder="Message" [ngModel]="(event | async)?.name" (ngModelChange)="eventDoc.update({name: $event})">
+    <input matInput type="text" name="message" placeholder="Message" [ngModel]="(event | async)?.message"
+      (ngModelChange)="eventDoc.update({message: $event})">
   </mat-form-field>
   <mat-selection-list>
     <mat-list-option checkboxPosition="before">

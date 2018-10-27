@@ -1,18 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth, database } from 'firebase/app';
+import { auth } from 'firebase/app';
 import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService implements CanActivate {
   auth: any;
+  private userDoc: AngularFirestoreDocument<User>;
+  user: Observable<User>;
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) {
-    this.auth = afAuth.authState.subscribe(user => {
-      if (user) {
+  constructor(private afAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
+    this.auth = afAuth.authState.subscribe(authUser => {
+      if (authUser) {
+        this.userDoc = this.afs.doc<User>('users/' + authUser.uid);
+        this.userDoc.set({
+          displayName: authUser.displayName,
+          email: authUser.email,
+          photoURL: authUser.photoURL
+        }, { merge: true });
         this.router.navigate(['home']);
       } else {
         this.router.navigate(['login']);
@@ -38,8 +48,10 @@ export class AuthService implements CanActivate {
 
   loginWithFacebook() {
     return new Promise<any>((resolve, reject) => {
+      const provider = new auth.FacebookAuthProvider();
+      provider.addScope('email');
       this.afAuth.auth
-        .signInWithPopup(new auth.FacebookAuthProvider())
+        .signInWithPopup(provider)
         .then(res => {
           resolve(res);
         }, err => {
@@ -52,7 +64,6 @@ export class AuthService implements CanActivate {
   loginWithGoogle() {
     return new Promise<any>((resolve, reject) => {
       const provider = new auth.GoogleAuthProvider();
-      provider.addScope('profile');
       provider.addScope('email');
       this.afAuth.auth
         .signInWithPopup(provider)
