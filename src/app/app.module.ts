@@ -29,11 +29,16 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './core/auth.service';
 import { RecurringEventComponent } from './recurring-event/recurring-event.component';
+import { EventsComponent } from './events/events.component';
+import { EventComponent } from './event/event.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'recurring', component: RecurringEventsComponent, canActivate: [AuthService] },
   { path: 'recurringEvent/:id', component: RecurringEventComponent, canActivate: [AuthService] },
+  { path: 'events', component: EventsComponent, canActivate: [AuthService] },
+  { path: 'event', component: EventComponent, canActivate: [AuthService] },
+  { path: 'event/:id', component: EventComponent, canActivate: [AuthService] },
   { path: '**', component: HomeComponent, canActivate: [AuthService] }
 ];
 
@@ -43,7 +48,9 @@ const appRoutes: Routes = [
     RecurringEventsComponent,
     HomeComponent,
     LoginComponent,
-    RecurringEventComponent
+    RecurringEventComponent,
+    EventsComponent,
+    EventComponent
   ],
   imports: [
     RouterModule.forRoot(
