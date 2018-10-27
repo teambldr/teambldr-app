@@ -12,11 +12,11 @@ import { Event } from '../model/event';
 export class EventsComponent implements OnInit {
 
   private collection: AngularFirestoreCollection<Event>;
-  recurringEvents: Observable<Event[]>;
+  events: Observable<Event[]>;
 
   constructor(private afs: AngularFirestore) {
-    this.collection = afs.collection<Event>('events');
-    this.recurringEvents = this.collection.snapshotChanges().pipe(map(actions => {
+    this.collection = this.afs.collection<Event>('events');
+    this.events = this.collection.snapshotChanges().pipe(map(actions => {
       return actions.map(action => {
         const data = action.payload.doc.data() as Event;
         const id = action.payload.doc.id;

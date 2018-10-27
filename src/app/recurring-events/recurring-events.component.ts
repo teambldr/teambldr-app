@@ -15,7 +15,7 @@ export class RecurringEventsComponent implements OnInit {
   recurringEvents: Observable<RecurringEvent[]>;
 
   constructor(private afs: AngularFirestore) {
-    this.collection = afs.collection<RecurringEvent>('recurringEvents');
+    this.collection = this.afs.collection<RecurringEvent>('recurringEvents');
     this.recurringEvents = this.collection.snapshotChanges().pipe(map(actions => {
       return actions.map(action => {
         const data = action.payload.doc.data() as RecurringEvent;
