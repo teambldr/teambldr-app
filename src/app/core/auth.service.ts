@@ -4,20 +4,20 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { User } from '../model/user';
+import { UserProfile } from '../model/user-profile';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService implements CanActivate {
   auth: any;
-  private userDoc: AngularFirestoreDocument<User>;
-  user: Observable<User>;
+  private userDoc: AngularFirestoreDocument<UserProfile>;
+  user: Observable<UserProfile>;
 
   constructor(private afAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
     this.auth = afAuth.authState.subscribe(authUser => {
       if (authUser) {
-        this.userDoc = this.afs.doc<User>('users/' + authUser.uid);
+        this.userDoc = this.afs.doc<UserProfile>('users/' + authUser.uid);
         this.userDoc.set({
           displayName: authUser.displayName,
           email: authUser.email,

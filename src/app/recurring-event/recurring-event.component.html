@@ -1,3 +1,46 @@
-<div>
-  {{ (event | async)?.name }}
-</div>
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>event</mat-icon>
+    </div>
+    <mat-card-title>Volleyball</mat-card-title>
+    <mat-card-subtitle>My Event</mat-card-subtitle>
+  </mat-card-header>
+  <mat-form-field class="full-width">
+    <input matInput type="text" name="name" placeholder="Name" [ngModel]="(event | async)?.name" (ngModelChange)="eventDoc.update({name: $event})">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="5"
+      type="text" name="description" placeholder="Description" [ngModel]="(event | async)?.description" (ngModelChange)="eventDoc.update({description: $event})">
+      </textarea>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" name="location" placeholder="Location" [ngModel]="(event | async)?.location"
+      (ngModelChange)="eventDoc.update({location: $event})">
+    <a matSuffix [href]="(event | async)?.location">
+      <mat-icon>location_on </mat-icon>
+    </a>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput readonly=true type="text" name="organiser" placeholder="Organiser" [ngModel]="(event | async)?.organiser">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput readonly=true type="text" name="organiser" placeholder="To invite players please share this link"
+      [ngModel]="(event | async)?.inviteLink">
+  </mat-form-field>
+  <mat-list>
+    <h3 mat-subheader>Registered attendants</h3>
+    <mat-list-item *ngFor="let user of users | async">
+      {{ user.displayName }}
+    </mat-list-item>
+  </mat-list>
+
+  <mat-card-actions>
+    <button mat-raised-button>Create New Event</button>
+  </mat-card-actions>
+</mat-card>
+<ul>
+  <li class="text" *ngFor="let item of items | async">
+    {{item.name}}
+  </li>
+</ul>
