@@ -24,7 +24,7 @@ export class AuthService implements CanActivate {
           photoURL: authUser.photoURL
         }, { merge: true });
       } else {
-        this.router.navigate(['login']);
+        if (!this.router.url.includes('/join/')) { this.router.navigate(['login']); }
       }
     });
   }

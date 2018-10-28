@@ -3,8 +3,9 @@
     <div mat-card-avatar>
       <mat-icon>event</mat-icon>
     </div>
-    <mat-card-title>Volleyball</mat-card-title>
-    <mat-card-subtitle>My Event</mat-card-subtitle>
+    <mat-card-title>Recurring Event Template</mat-card-title>
+    <mat-card-subtitle>General definition of what you want to organise people for. Create actual events for specific
+      date and time from here using button below.</mat-card-subtitle>
   </mat-card-header>
   <mat-form-field class="full-width">
     <input matInput type="text" name="name" placeholder="Name" [ngModel]="(event | async)?.name" (ngModelChange)="eventDoc.update({name: $event})">
@@ -26,7 +27,8 @@
   </mat-form-field>
   <mat-form-field class="full-width">
     <input matInput readonly=true type="text" name="organiser" placeholder="To invite players please share this link"
-      [ngModel]="(event | async)?.inviteLink">
+      #inviteLinkInput [ngModel]="inviteLink">
+    <mat-icon matSuffix (click)="copyInputText(inviteLinkInput)">file_copy</mat-icon>
   </mat-form-field>
   <mat-list>
     <h3 mat-subheader>Registered attendants</h3>
@@ -36,7 +38,7 @@
   </mat-list>
 
   <mat-card-actions>
-    <button mat-raised-button>Create New Event</button>
+    <button mat-raised-button>Create New Actual Event</button>
   </mat-card-actions>
 </mat-card>
 <ul>
