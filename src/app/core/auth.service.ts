@@ -23,7 +23,6 @@ export class AuthService implements CanActivate {
           email: authUser.email,
           photoURL: authUser.photoURL
         }, { merge: true });
-        this.router.navigate(['home']);
       } else {
         this.router.navigate(['login']);
       }
@@ -81,13 +80,4 @@ export class AuthService implements CanActivate {
     this.router.navigate(['/']);
   }
 
-  private updateUserData(): void {
-    const path = `users/${this.currentUser.currentUserId}`; // Endpoint on firebase
-    const data = {
-      name: this.currentUser.displayName,
-      email: this.currentUser.email,
-    };
-
-    // this.database.object(path).update(data).catch(error => console.log(error));
-  }
 }

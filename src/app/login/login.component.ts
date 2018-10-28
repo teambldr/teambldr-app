@@ -15,10 +15,10 @@ export class LoginComponent implements OnInit {
   }
 
   loginFacebook() {
-    this.authService.loginWithFacebook().then(r => this.router.navigate(['home']));
+    this.authService.loginWithFacebook().then(() => this.router.navigate(['home']));
   }
 
   loginGoogle() {
-    this.authService.loginWithGoogle().then(r => this.router.navigate(['home']));
+    this.authService.loginWithGoogle().then(() => this.router.navigate(['home']));
   }
 }
