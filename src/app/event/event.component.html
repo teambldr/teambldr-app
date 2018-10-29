@@ -3,7 +3,7 @@
     <div mat-card-avatar>
       <mat-icon>event</mat-icon>
     </div>
-    <mat-card-title>Volleyball</mat-card-title>
+    <mat-card-title>{{(event | async)?.name}}</mat-card-title>
     <mat-card-subtitle>My Event</mat-card-subtitle>
   </mat-card-header>
   <mat-form-field class="full-width">

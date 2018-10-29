@@ -1,5 +1,6 @@
 export interface Event {
-    id: string;
+    id?: string;
+    templateId: string;
     name: string;
     date: Date;
     time: string;
