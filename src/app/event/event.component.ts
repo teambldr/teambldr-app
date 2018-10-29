@@ -10,7 +10,7 @@ import { Event } from '../model/event';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
-  private eventDoc: AngularFirestoreDocument<Event>;
+  eventDoc: AngularFirestoreDocument<Event>;
   event: Observable<Event>;
   constructor(private afs: AngularFirestore, private route: ActivatedRoute) { }
 

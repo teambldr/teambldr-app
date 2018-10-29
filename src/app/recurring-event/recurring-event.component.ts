@@ -13,7 +13,7 @@ import { User } from '../model/user';
 })
 export class RecurringEventComponent implements OnInit {
 
-  private eventDoc: AngularFirestoreDocument<RecurringEvent>;
+  eventDoc: AngularFirestoreDocument<RecurringEvent>;
   event: Observable<RecurringEvent>;
   private usersCollection: AngularFirestoreCollection<User>;
   users: Observable<User[]>;
