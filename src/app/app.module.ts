@@ -18,7 +18,8 @@ import {
   MatNativeDateModule,
   MatInputModule,
   MatListModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatProgressBarModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -78,7 +79,8 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatInputModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatProgressBarModule
   ],
   providers: [
     AuthService,

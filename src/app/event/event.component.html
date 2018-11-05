@@ -6,6 +6,7 @@
     <mat-card-title>{{(event | async)?.name}}</mat-card-title>
     <mat-card-subtitle>My Event</mat-card-subtitle>
   </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <mat-form-field class="full-width">
     <input matInput [matDatepicker]="picker" placeholder="Choose a date" [ngModel]="eventStart" (dateChange)="dateChanged('change', $event)">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

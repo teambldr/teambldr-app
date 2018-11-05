@@ -14,15 +14,18 @@ export class EventComponent implements OnInit {
   eventDoc: AngularFirestoreDocument<Event>;
   event: Observable<Event>;
   eventStart: Date;
+  isLoading: boolean;
 
   constructor(private afs: AngularFirestore, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isLoading = true;
     const id = this.route.snapshot.paramMap.get('id');
     this.eventDoc = this.afs.doc<Event>('events/' + id);
     this.event = this.eventDoc.valueChanges();
     this.event.subscribe(e => {
       this.eventStart = e.start.toDate();
+      this.isLoading = false;
     });
   }
 
