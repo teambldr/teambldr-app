@@ -39,8 +39,7 @@ export class RecurringEventComponent implements OnInit {
       const newEvent: Event = {
         templateId: this.id,
         name: template.data().name,
-        date: new Date(),
-        time: '',
+        start: new Date(),
         message: 'Are you in?'
       };
       this.newEventCollection.add(newEvent).then(doc =>

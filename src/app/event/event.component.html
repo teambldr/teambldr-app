@@ -7,12 +7,13 @@
     <mat-card-subtitle>My Event</mat-card-subtitle>
   </mat-card-header>
   <mat-form-field class="full-width">
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" [ngModel]="eventStart" (dateChange)="dateChanged('change', $event)">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   <mat-form-field class="full-width">
-    <input matInput placeholder="Time" value="00:00">
+    <input matInput placeholder="Time" #time [ngModel]="eventStart | date:'HH:MM'" (keyup.enter)="timeChanged(time.value)"
+      (blur)="timeChanged(time.value)">
   </mat-form-field>
   <mat-form-field class="full-width">
     <input matInput type="text" name="message" placeholder="Message" [ngModel]="(event | async)?.message"

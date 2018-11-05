@@ -2,7 +2,6 @@ export interface Event {
     id?: string;
     templateId: string;
     name: string;
-    date: Date;
-    time: string;
+    start: any; // firebase.firestore.Timestamp
     message: string;
 }
