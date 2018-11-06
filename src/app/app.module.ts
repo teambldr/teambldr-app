@@ -19,7 +19,8 @@ import {
   MatInputModule,
   MatListModule,
   MatSidenavModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MAT_DATE_LOCALE
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -84,7 +85,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthService,
-    MessagingService
+    MessagingService,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
   ],
   bootstrap: [AppComponent]
 })
