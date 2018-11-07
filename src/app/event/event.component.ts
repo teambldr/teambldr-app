@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { Event } from '../model/event';
 import { MatDatepickerInputEvent } from '@angular/material';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
+import { Event } from '../model/event';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-event',
@@ -13,6 +15,8 @@ import { MatDatepickerInputEvent } from '@angular/material';
 export class EventComponent implements OnInit {
   eventDoc: AngularFirestoreDocument<Event>;
   event: Observable<Event>;
+  private usersCollection: AngularFirestoreCollection<User>;
+  users: Observable<User[]>;
   eventStart: Date;
   isLoading: boolean;
 
@@ -27,6 +31,8 @@ export class EventComponent implements OnInit {
       this.eventStart = e.start.toDate();
       this.isLoading = false;
     });
+    this.usersCollection = this.afs.collection<User>('events/' + id + '/users');
+    this.users = this.usersCollection.valueChanges();
   }
 
   dateChanged(type: string, event: MatDatepickerInputEvent<Date>): void {

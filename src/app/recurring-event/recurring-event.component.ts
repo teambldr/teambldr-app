@@ -42,8 +42,13 @@ export class RecurringEventComponent implements OnInit {
         start: new Date(),
         message: 'Are you in?'
       };
-      this.newEventCollection.add(newEvent).then(doc =>
-        this.router.navigate(['event/' + doc.id]));
+      this.newEventCollection.add(newEvent).then(event => {
+        this.usersCollection.get().subscribe(users => users.forEach(user =>
+          event.collection('users').doc(user.id).set({ displayName: user.data().displayName })
+        ));
+
+        this.router.navigate(['event/' + event.id]);
+      });
     });
   }
 
