@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireMessaging } from '@angular/fire/messaging';
-import { mergeMapTo } from 'rxjs/operators';
 import { take } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../model/user';
 
 @Injectable()
 export class MessagingService {
 
+    private userDoc: AngularFirestoreDocument<User>;
     currentMessage = new BehaviorSubject(null);
 
     constructor(
-        private angularFireDB: AngularFireDatabase,
+        private afs: AngularFirestore,
         private angularFireAuth: AngularFireAuth,
         private angularFireMessaging: AngularFireMessaging) {
         this.angularFireMessaging.messaging.subscribe(
@@ -33,9 +34,8 @@ export class MessagingService {
         // we can change this function to request our backend service
         this.angularFireAuth.authState.pipe(take(1)).subscribe(
             () => {
-                const data = {};
-                data[userId] = token;
-                this.angularFireDB.object('fcmTokens/').update(data);
+                this.userDoc = this.afs.doc<User>('users/' + userId);
+                this.userDoc.update({ fcmToken: token });
             });
     }
 
@@ -47,7 +47,6 @@ export class MessagingService {
     requestPermission(userId) {
         this.angularFireMessaging.requestToken.subscribe(
             (token) => {
-                console.log(token);
                 this.updateToken(userId, token);
             },
             (err) => {
