@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
 
 import { AuthService } from './core/auth.service';
-import { MessagingService } from './core/messaging.service';
 
 @Component({
   selector: 'app-root',
@@ -11,21 +8,10 @@ import { MessagingService } from './core/messaging.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
-  title = 'teamBldr';
-  items: Observable<any[]>;
-  message: any;
+export class AppComponent {
 
-  constructor(db: AngularFirestore, private messagingService: MessagingService, public authService: AuthService) {
-    this.items = db.collection('items').valueChanges();
-  }
+  constructor(public authService: AuthService) { }
 
-  ngOnInit() {
-    const userId = 'user001';
-    this.messagingService.requestPermission(userId);
-    this.messagingService.receiveMessage();
-    this.message = this.messagingService.currentMessage;
-  }
 
   logout() {
     this.authService.logout();

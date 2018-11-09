@@ -2,19 +2,25 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { MessagingService } from './messaging.service';
 import { UserProfile } from '../model/user-profile';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService implements CanActivate {
-  auth: any;
+  auth: Subscription;
   private userDoc: AngularFirestoreDocument<UserProfile>;
   user: Observable<UserProfile>;
 
-  constructor(private afAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    private router: Router,
+    private afs: AngularFirestore,
+    private messagingService: MessagingService) {
+
     this.auth = afAuth.authState.subscribe(authUser => {
       if (authUser) {
         this.userDoc = this.afs.doc<UserProfile>('users/' + authUser.uid);
@@ -22,7 +28,11 @@ export class AuthService implements CanActivate {
           displayName: authUser.displayName,
           email: authUser.email,
           photoURL: authUser.photoURL
-        }, { merge: true });
+        }, { merge: true })
+          .then(() => {
+            this.messagingService.requestPermission(authUser.uid);
+            this.messagingService.receiveMessage();
+          });
       } else {
         if (!this.router.url.includes('/join/')) { this.router.navigate(['login']); }
       }
