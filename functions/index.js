@@ -1,8 +1,17 @@
 const functions = require('firebase-functions');
+const admin = require("firebase-admin");
+admin.initializeApp();
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+exports.fcmSend = functions.firestore
+    .document('messages/{messageId}')
+    .onCreate((snap, context) => {
+        const message = snap.data();
+        const payload = {
+            notification: {
+                title: message.title,
+                body: message.body
+            }
+        };
+
+        return admin.messaging().sendToDevice(message.fcmToken, payload)
+    });
