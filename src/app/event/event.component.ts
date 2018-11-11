@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 import { Event } from '../model/event';
 import { User } from '../model/user';
+import { Message } from '../model/message';
 
 @Component({
   selector: 'app-event',
@@ -16,6 +17,7 @@ export class EventComponent implements OnInit {
   eventDoc: AngularFirestoreDocument<Event>;
   event: Observable<Event>;
   private usersCollection: AngularFirestoreCollection<User>;
+  private messagesCollection: AngularFirestoreCollection<Message>;
   users: Observable<User[]>;
   eventStart: Date;
   isLoading: boolean;
@@ -32,7 +34,20 @@ export class EventComponent implements OnInit {
       this.isLoading = false;
     });
     this.usersCollection = this.afs.collection<User>('events/' + id + '/users');
+    this.messagesCollection = this.afs.collection<Message>('messages');
     this.users = this.usersCollection.valueChanges();
+  }
+
+  sendNotifications() {
+    this.eventDoc.ref.get().then(eventDoc => {
+      const event = eventDoc.data() as Event;
+      const newMessage: Message = {
+        fcmToken: '',
+        title: event.name,
+        body: event.start.toDate().toLocaleString('en-GB') + '. ' + event.message
+      };
+      this.messagesCollection.add(newMessage);
+    });
   }
 
   dateChanged(type: string, event: MatDatepickerInputEvent<Date>): void {
