@@ -8,6 +8,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   MatToolbarModule,
   MatButtonModule,
@@ -65,6 +66,7 @@ const appRoutes: Routes = [
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
