@@ -1,6 +1,18 @@
-<button mat-raised-button (click)="loginFacebook()">
-  Sign In With Facebook
-</button>
-<button mat-raised-button (click)="loginGoogle()">
-  Sign In With Google
-</button>
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <fa-icon [icon]="faSignInAlt"></fa-icon>
+    </div>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-subtitle>Sign in to use application</mat-card-subtitle>
+  </mat-card-header>
+
+  <button mat-raised-button class="block-button" (click)="loginFacebook()">
+    <fa-icon [icon]="faFacebookF"></fa-icon>
+    <span> Sign In With Facebook </span>
+  </button>
+  <button mat-raised-button class="block-button" (click)="loginGoogle()">
+    <fa-icon [icon]="faGoogle"></fa-icon>
+    <span> Sign In With Google </span>
+  </button>
+</mat-card>

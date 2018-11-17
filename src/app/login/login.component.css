@@ -1,0 +1,8 @@
+.block-button {
+    display: block;
+    width: 100%;
+    padding: 14px 28px;
+    margin: 16px 0px 16px 0px;
+    font-size: 16px;
+    text-align: center;
+}
