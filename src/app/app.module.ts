@@ -36,6 +36,7 @@ import { RecurringEventComponent } from './recurring-event/recurring-event.compo
 import { EventsComponent } from './events/events.component';
 import { EventComponent } from './event/event.component';
 import { JoinComponent } from './join/join.component';
+import { SidenavProfileComponent } from './sidenav-profile/sidenav-profile.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -57,7 +58,8 @@ const appRoutes: Routes = [
     RecurringEventComponent,
     EventsComponent,
     EventComponent,
-    JoinComponent
+    JoinComponent,
+    SidenavProfileComponent
   ],
   imports: [
     RouterModule.forRoot(
