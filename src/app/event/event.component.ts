@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDatepickerInputEvent } from '@angular/material';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-
 import { Event } from '../model/event';
 import { User } from '../model/user';
 import { Message } from '../model/message';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-event',
@@ -22,7 +22,9 @@ export class EventComponent implements OnInit {
   eventStart: Date;
   isLoading: boolean;
 
-  constructor(private afs: AngularFirestore, private route: ActivatedRoute) { }
+  constructor(private afs: AngularFirestore,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -46,7 +48,9 @@ export class EventComponent implements OnInit {
         title: event.name,
         body: event.start.toDate().toLocaleString('en-GB') + '. ' + event.message
       };
-      this.messagesCollection.add(newMessage);
+      if (this.messagesCollection.add(newMessage)) {
+        this.openSnackBar(event.message, 'SENT');
+      }
     });
   }
 
@@ -75,4 +79,9 @@ export class EventComponent implements OnInit {
     this.eventDoc.update({ start: this.eventStart });
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }

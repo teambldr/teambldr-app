@@ -9,6 +9,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material';
 import {
   MatToolbarModule,
   MatButtonModule,
@@ -85,7 +86,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatListModule,
     MatSidenavModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   providers: [
     AuthService,
