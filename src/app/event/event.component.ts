@@ -48,8 +48,10 @@ export class EventComponent implements OnInit {
         title: event.name,
         body: event.start.toDate().toLocaleString('en-GB') + '. ' + event.message
       };
+      console.log(newMessage.body);
       if (this.messagesCollection.add(newMessage)) {
-        this.openSnackBar(event.message, 'SENT');
+        const action = 'SENT';
+        this.openSnackBar(event.message, action);
       }
     });
   }
